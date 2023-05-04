@@ -35,7 +35,7 @@ size_t priority_queue_size(PriorityQueue *pq) {
     return heap_size(pq->heap);
 }
 
-bool priority_queue_empty(PriorityQueue *pq) {
+bool priority_queue_is_empty(PriorityQueue *pq) {
     return heap_is_empty(pq->heap);
 }
 

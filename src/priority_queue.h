@@ -21,4 +21,4 @@ void *priority_queue_peek(PriorityQueue *pq);
 
 size_t priority_queue_size(PriorityQueue *pq);
 
-bool priority_queue_empty(PriorityQueue *pq);
+bool priority_queue_is_empty(PriorityQueue *pq);
