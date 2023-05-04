@@ -15,7 +15,7 @@ ArrayList *array_list_new();
 void array_list_destroy(ArrayList *list);
 
 
-// methods
+// array list operations
 size_t array_list_len(ArrayList *list);
 bool array_list_empty(ArrayList *list);
 

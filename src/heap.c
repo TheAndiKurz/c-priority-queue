@@ -84,10 +84,10 @@ void *heap_pop(Heap *heap) {
     return value;
 }
 
-size_t heap_len(Heap *heap) {
+size_t heap_size(Heap *heap) {
     return array_list_len(heap->list);
 }
 
 bool heap_is_empty(Heap *heap) {
-    return heap_len(heap) == 0;
+    return heap_size(heap) == 0;
 }

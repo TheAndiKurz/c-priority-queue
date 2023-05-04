@@ -20,4 +20,4 @@ void *heap_peek(Heap *heap);
 void *heap_pop(Heap *heap);
 
 size_t heap_size(Heap *heap);
-bool heap_empty(Heap *heap);
+bool heap_is_empty(Heap *heap);
