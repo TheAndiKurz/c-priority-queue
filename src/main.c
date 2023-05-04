@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "priority_queue.h"
+#include "lib/priority_queue.h"
 
 struct Notification {
     int priority;

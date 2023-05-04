@@ -1,7 +1,7 @@
 # Variables
 CC = gcc
 CFLAGS = -Wall -Wextra -g
-SRC = $(wildcard src/*.c)
+SRC = $(shell find src -name *.c)
 OBJ = $(SRC:src/%.c=target/obj/%.o)
 EXEC = target/$(shell basename `pwd`)
 
@@ -11,17 +11,12 @@ all: $(EXEC)
 $(EXEC): $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^
 
-target/obj/%.o: src/%.c target/obj/
+target/obj/%.o: src/%.c
+	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-target/obj/:
-	mkdir -p $@
-
 clean:
-	rm -f $(OBJ)
-
-fclean: clean
-	rm -f $(EXEC)
+	rm -fr target
 
 re: fclean all
 
