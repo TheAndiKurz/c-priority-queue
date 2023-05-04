@@ -2,27 +2,47 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "heap.h"
+#include "priority_queue.h"
 
-int compare(void *a, void *b) {
-    return (long)a - (long)b;
+struct Notification {
+    int priority;
+    char *message;
+};
+typedef struct Notification Notification;
+
+
+int compare_notifications(void *a, void *b) {
+    Notification *n1 = (Notification *) a;
+    Notification *n2 = (Notification *) b;
+    return n1->priority - n2->priority;
 }
 
 
 int main(void)
 {
     srand(time(NULL));
-    Heap *heap = heap_new(compare);
+    PriorityQueue *heap = priority_queue_new(compare_notifications);
 
     for (long i = 0; i < 1000; i++) {
-        long r = rand() % 1000;
-        heap_push(heap, (void *) r);
+        long priority = rand() % 10;
+        Notification *r = (Notification *) malloc(sizeof(Notification));
+        r->priority = priority;
+        r->message = malloc(100 * sizeof(char));
+
+        sprintf(r->message, "Notification %ld", i);
+
+        priority_queue_push(heap, (void *) r);
     }
     
-    for (long i = 0; i < 1000; i++) {
-        printf("%ld\n", (long)heap_pop(heap));
+    while (!priority_queue_is_empty(heap)) {
+        Notification *r = (Notification *) priority_queue_pop(heap);
+
+        printf("Priority: %d, Message: %s\n", r->priority, r->message);
+
+        free(r->message);
+        free(r);
     }
 
-    heap_destroy(heap);
+    priority_queue_destroy(heap);
     return 0;
 }
