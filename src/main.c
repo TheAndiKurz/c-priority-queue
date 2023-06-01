@@ -4,6 +4,8 @@
 
 #include "lib/priority_queue.h"
 
+#define SIZE 1024
+
 struct Notification {
     int priority;
     char *message;
@@ -23,7 +25,7 @@ int main(void)
     srand(time(NULL));
     PriorityQueue *heap = priority_queue_new(compare_notifications);
 
-    for (long i = 0; i < 1000; i++) {
+    for (long i = 0; i < SIZE; i++) {
         long priority = rand() % 10;
         Notification *r = (Notification *) malloc(sizeof(Notification));
         r->priority = priority;
